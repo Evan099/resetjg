@@ -28,6 +28,8 @@
             sessionStorage.setItem("userInfo", JSON.stringify(resultLogin.data))
             sessionStorage.setItem("websiteType", "scjg")
 
+
+
             const mytoken = sessionStorage.getItem("token")
 
             if(mytoken !='' || mytoken != null){
