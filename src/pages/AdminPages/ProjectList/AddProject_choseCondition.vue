@@ -13,7 +13,7 @@
             <table class="projectTable">
               <tr>
                 <td>申报年度:</td>
-                <td><el-input v-model="input" disabled></el-input></td>
+                <td><el-input v-model="insertProSkipData.declareYear" disabled></el-input></td>
                 <td>所属市州:</td>
                 <td>
                   <el-select v-model="town" placeholder="请选择"  style="width: 100%">
@@ -39,7 +39,7 @@
               </tr>
               <tr>
                 <td>申报状态:</td>
-                <td><el-input v-model="input" disabled></el-input></td>
+                <td><el-input v-model="insertProSkipData.projectStatusName" disabled></el-input></td>
                 <td>项目类型:</td>
                 <td>
                   <el-checkbox-group v-model="projectTypeArr" @change="$store.commit('projectTypeArrChange',projectTypeArr)"   style="text-align: left;">
@@ -66,7 +66,7 @@
           town:null,
           county:null,
 
-          newFirstPageB:{
+          choseCondition:{
             areaName:null,
             areaCode:null
           }
@@ -74,7 +74,7 @@
       },
       methods:{
 
-        async getTownCountyName(newVal){//通过企业id来load并回显市州区县名称
+        async getTownCountyName(newVal){//通过企业id来load并回显所属市州和所属区县名称
           const companyId = newVal
           const rs = await reqSerchArea({companyId})
 
@@ -87,7 +87,7 @@
 
       },
       computed:{
-        ...mapState(['name','num','companyId'])
+        ...mapState(['companyId','insertProSkipData'])
 
       },
       watch:{
@@ -96,7 +96,7 @@
         }
       },
       mounted() {
-        this.$store.dispatch('getArea')
+        this.$store.dispatch('getInsertProSkip')
       }
 
     }

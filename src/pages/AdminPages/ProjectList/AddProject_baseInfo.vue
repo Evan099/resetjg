@@ -130,7 +130,7 @@
               style="width: 100%"
             >
               <el-option
-                v-for="item in initData.proCategoryList"
+                v-for="item in insertProSkipData.proCategoryList"
                 :key="item.value"
                 :label="item.name"
                 :value="parseInt(item.dicDataCode)"
@@ -147,7 +147,7 @@
               style="width: 100%"
             >
               <el-option
-                v-for="item in initData.companyNatureList"
+                v-for="item in insertProSkipData.companyNatureList"
                 :key="item.value"
                 :label="item.name"
                 :value="item.id"
@@ -162,7 +162,7 @@
               style="width: 100%"
             >
               <el-option
-                v-for="item in initData.proNatureList"
+                v-for="item in insertProSkipData.proNatureList"
                 :key="item.value"
                 :label="item.name"
                 :value="parseInt(item.dicDataCode)"
@@ -181,7 +181,7 @@
               style="width: 100%"
             >
               <el-option
-                v-for="item in initData.industryList "
+                v-for="item in insertProSkipData.industryList "
                 :key="item.value"
                 :label="item.label"
                 :value="item.vid"
@@ -197,7 +197,7 @@
               style="width: 100%"
             >
               <el-option
-                v-for="item in initData.traditionIndustryDTOList"
+                v-for="item in insertProSkipData.traditionIndustryDTOList"
                 :key="item.value"
                 :label="item.name"
                 :value="parseInt(item.dicDataCode)"
@@ -216,7 +216,7 @@
               style="width: 100%"
             >
               <el-option
-                v-for="item in initData.industrialFieldList"
+                v-for="item in insertProSkipData.industrialFieldList"
                 :key="item.code"
                 :label="item.name"
                 :value="item.code"
@@ -231,7 +231,7 @@
               style="width: 100%"
             >
               <el-option
-                v-for="item in initData.data"
+                v-for="item in insertProSkipData.data"
                 :key="item.code"
                 :label="item.name"
                 :value="parseInt(item.code)"
@@ -351,7 +351,7 @@
         },
       },
       computed:{
-        ...mapState(['initData','userInfo','projectTypeArr','projectWriteStatus'])
+        ...mapState(['insertProSkipData','userInfo','projectTypeArr','projectWriteStatus'])
       },
       mounted() {
         this.getListCompanyBd()

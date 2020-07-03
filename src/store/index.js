@@ -8,12 +8,12 @@ Vue.use(Vuex)
 //创建VueX对象
 const store = new Vuex.Store({
   state:{//状态,只有mutations才有权利直接修改state
-    projectTypeArr:['0'],
-    projectWriteStatus:0,
+    projectTypeArr:['0'],//项目类型数组
+    projectWriteStatus:0,//用于显示基本/重点/竣工
     companyId:null,
 
-    initData:null,
-    userInfo:JSON.parse(sessionStorage.getItem('userInfo'))
+    insertProSkipData:null,//初始化各种select option数据和申报年度申报状态等信息
+    userInfo:JSON.parse(sessionStorage.getItem('userInfo'))//用户信息
   },
 
 
@@ -29,8 +29,8 @@ const store = new Vuex.Store({
       state.companyId = val
     },
 
-    initDataChange(state,val){
-      state.initData = val
+    insertProSkipChange(state,val){
+      state.insertProSkipData = val
     },
 
     // userInfoChange(state,val){
@@ -46,9 +46,9 @@ const store = new Vuex.Store({
       },1000)
     },
 
-    async getArea(context){
+    async getInsertProSkip(context){
       const rs = await reqCreatProFirst({})
-      context.commit('initDataChange',rs.data)
+      context.commit('insertProSkipChange',rs.data)
     }
 
   },
