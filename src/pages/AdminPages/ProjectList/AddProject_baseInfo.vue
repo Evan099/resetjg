@@ -285,6 +285,8 @@
       name: "AddProject_baseInfo",
       data(){
           return{
+            choseProjectId:'',//可选项目
+
             baseParams:{
               companyId:null,
               projectName:null,
@@ -326,8 +328,6 @@
         // addOne(){//异步操作
         //   this.$store.dispatch('addOne',5)
         // }
-
-
 
 
         async getListCompanyBd(){//初始化公司

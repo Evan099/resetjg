@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import {reqCreatProFirst} from "../api";
+import {reqShowProvance} from "../api";
 
 //挂载Vuex
 Vue.use(Vuex)
@@ -13,7 +14,9 @@ const store = new Vuex.Store({
     companyId:null,
 
     insertProSkipData:null,//初始化各种select option数据和申报年度申报状态等信息
-    userInfo:JSON.parse(sessionStorage.getItem('userInfo'))//用户信息
+    userInfo:JSON.parse(sessionStorage.getItem('userInfo')),//用户信息
+    enterpriseConditionData:null,//市州列表数据
+    enterpriseConditionCountyOneDate:'',//市州变化获取的一条区县
   },
 
 
@@ -33,9 +36,14 @@ const store = new Vuex.Store({
       state.insertProSkipData = val
     },
 
-    // userInfoChange(state,val){
-    //   state.userInfo = val
-    // }
+    enterpriseConditionDataChange(state,val){
+      state.enterpriseConditionData = val
+    },
+
+    enterpriseConditionCountyDataChange(state,val){
+      state.enterpriseConditionCountyOneDate = val
+    }
+
   },
 
 
@@ -49,7 +57,18 @@ const store = new Vuex.Store({
     async getInsertProSkip(context){
       const rs = await reqCreatProFirst({})
       context.commit('insertProSkipChange',rs.data)
+    },
+
+    async getPriseConditionData(context){//获取市州
+      const rs = await reqShowProvance({})
+      context.commit('enterpriseConditionDataChange',rs.data)
+    },
+
+    async getPriseConditionCountyData(context,code){//获取区县
+      const rs = await reqShowProvance({code})
+      context.commit('enterpriseConditionCountyDataChange',rs.data)
     }
+
 
   },
 
@@ -58,6 +77,9 @@ const store = new Vuex.Store({
   }
 
 
+
 })
+
+
 
 export default store

@@ -3,7 +3,7 @@
 
       <div>
         <div class="creatProject-title">
-          <span>创建新项目</span>
+          <span>创建新项目</span>companyId:{{companyId}}
         </div>
       </div>
 
@@ -16,23 +16,23 @@
                 <td><el-input v-model="insertProSkipData.declareYear" disabled></el-input></td>
                 <td>所属市州:</td>
                 <td>
-                  <el-select v-model="town" placeholder="请选择"  style="width: 100%">
+                  <el-select v-model="town" placeholder="请选择" :disabled="companyId !== null && companyId !== '' "   style="width: 100%">
                     <el-option
-                      v-for="item in options"
-                      :key="item.value"
+                      v-for="item in enterpriseConditionData.area"
+                      :key="item.id"
                       :label="item.label"
-                      :value="item.value">
+                      :value="item.id">
                     </el-option>
                   </el-select>
                 </td>
                 <td>所属区县:</td>
                 <td>
-                  <el-select v-model="county" placeholder="请选择" style="width: 100%">
+                  <el-select v-model="county" placeholder="请选择" :disabled="companyId !== null && companyId !== '' "  style="width: 100%">
                     <el-option
-                      v-for="item in options"
-                      :key="item.value"
+                      v-for="item in enterpriseConditionCountyOneDate.county"
+                      :key="item.id"
                       :label="item.label"
-                      :value="item.value">
+                      :value="item.id">
                     </el-option>
                   </el-select>
                 </td>
@@ -69,7 +69,7 @@
           choseCondition:{
             areaName:null,
             areaCode:null
-          }
+          },
         };
       },
       methods:{
@@ -83,20 +83,36 @@
           this.town = arr[1]
           this.county = arr[2]
 
+
+
+        },
+        getCounty(newVal){//监听市州town值变化来获取区县//现在的需求在该界面不需要这个功能
+
+          if(this.companyId == ''){//如果没有选中企业名称，上面的市州值变化，则重新调取获取区县的接口
+            this.county = null
+          }
+
+          const code = newVal
+          this.$store.dispatch('getPriseConditionCountyData',code)
         }
 
       },
       computed:{
-        ...mapState(['companyId','insertProSkipData'])
+        ...mapState(['companyId','insertProSkipData','enterpriseConditionData','enterpriseConditionCountyOneDate'])
 
       },
       watch:{
         companyId:function (newVal,oldVal) {
           return this.getTownCountyName(newVal)
+        },
+        town:function (newVal,oldVal) {//监听市州town值变化来获取区县//现在的需求在该界面不需要这个功能
+          return this.getCounty(newVal)
         }
+
       },
       mounted() {
         this.$store.dispatch('getInsertProSkip')
+        this.$store.dispatch('getPriseConditionData')
       }
 
     }
