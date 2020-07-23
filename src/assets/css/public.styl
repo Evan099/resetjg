@@ -51,7 +51,7 @@
 /*去掉谷歌，火狐下的type="number"中的右边箭头*/
 input:-webkit-outer-spin-button,
 input:-webkit-inner-spin-button {
-  -webkit-appearance: none;
+  -webkit-appearance: none !important;
 }
 /*去掉谷歌，火狐下的type="number"中的右边箭头（2019-7-1新增）*/
 input::-webkit-outer-spin-button,input::-webkit-inner-spin-button{
@@ -108,6 +108,8 @@ input[type="number"] {
   cursor:pointer;
 }
 
+  //以下为重写新增后的变动
+
 //创建项目
 .createAlert {
   width: 25%;
@@ -124,11 +126,14 @@ input[type="number"] {
   color: #135294;
   padding: 5px;
   font-size 14px;
+  text-align center
 }
 .creatProject {
-  width: 100%;
+  font-size 14px
   border: solid 1px #D3E3F3;
-  min-width: 1000px;
+  min-width: 1100px;
+  margin 10px
+  margin-top 0
 }
 
 .creatProject-title {
@@ -229,6 +234,20 @@ input[type="number"] {
 }
 #creatProject{
   min-width 1100px;
+}
+
+.keyTieleMsg{
+  background-color: #DAE9F7;
+  color: #135294;
+  padding: 5px;
+  font-size 14px;
+}
+
+.styleCreatSavaBtn{
+  width: 15%;
+  margin: auto;
+  margin-top: 30px;
+  margin-bottom: 10px
 }
 
 

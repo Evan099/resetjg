@@ -6,10 +6,10 @@ import ajax from './ajax'
 // const BASE_URL = 'http://localhost:4000'
 // const BASE_URL = '/api'   //非网关状态需要跨域时
 
-const URL = 'http://183.223.8.7'            //广域网地址
-// const URL = 'http://192.168.200.101:28989'  //网关状态时请求无需跨域时  //局域网地址（李佳星）
-// const URL = 'http://192.168.200.9:28989'  //网关状态时请求无需跨域时  //局域网地址(陈远波)
-// const URL = 'http://192.168.200.220:28989'  //网关状态时请求无需跨域时  //局域网地址(陈远波)
+// const URL = 'http://183.223.8.7'            //广域网地址
+// const URL = 'http://192.168.200.101:28989'  //网关状态时请求无需跨域时  //局域网地址（李）
+const URL = 'http://192.168.200.9:28989'  //网关状态时请求无需跨域时  //局域网地址(陈)
+// const URL = 'http://192.168.200.220:28989'  //网关状态时请求无需跨域时  //局域网地址(王)
 
 const URL2 = '/scjg/system'  //无需token时
 const URL3 = '/scjgSystem/system'  //无需token时，(登陆使用)
