@@ -51,8 +51,8 @@
                 <td>项目类型:</td>
                 <td>
                   <el-checkbox-group v-model="projectType" @change="$store.commit('projectTypeChange',projectType)"   style="text-align: left;">
-                    <el-checkbox label="2" v-if="insertProSkipData.declareList[1].zxdm == 'r2' ">重点工业技术改造项目</el-checkbox>
-                    <el-checkbox label="1" v-if="insertProSkipData.declareList[0].zxdm == 'r1' ">竣工产值预测项目</el-checkbox>
+                    <el-checkbox label="2" v-if="insertProSkipData.declareList[1].zxdm === 'r2' ">重点工业技术改造项目</el-checkbox>
+                    <el-checkbox label="1" v-if="insertProSkipData.declareList[0].zxdm === 'r1' ">竣工产值预测项目</el-checkbox>
                   </el-checkbox-group>
                 </td>
               </tr>
@@ -123,7 +123,7 @@
           set(value){
             this.$store.commit('projectTypeChange',value)
           }
-        }
+        },
       },
       mounted() {
         this.$store.dispatch('getInsertProSkip')
@@ -136,5 +136,4 @@
 
 <style lang="stylus" rel="stylesheet/stylus" scoped>
   @import '../../../assets/css/public.styl';
-
 </style>

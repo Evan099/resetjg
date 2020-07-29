@@ -57,7 +57,7 @@
   import {mapState} from 'vuex'
   import {saveComplete} from "../../../api" //保存竣工信息
   export default {
-    name: "AddProject_completed",
+    name: "AddProject_completedInfo",
     data(){
       return{
         completedParams:{

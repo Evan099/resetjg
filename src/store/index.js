@@ -13,13 +13,13 @@ const store = new Vuex.Store({
     projectWriteStatus:'0',//用于显示基本/重点/竣工模块
     companyId:null,//公司id
     basicId:null,//项目id(==projectId)
-    oneProjectInfo:null,//单个项目信息
+    oneProjectInfo:{},//单个项目信息
 
-    insertProSkipData:null,//初始化各种select option数据和申报年度申报状态等信息[通用]
+    insertProSkipData:{},//初始化各种select option数据和申报年度申报状态等信息[通用]
     userInfo:JSON.parse(sessionStorage.getItem('userInfo')),//用户信息[通用]
-    enterpriseConditionData:null,//市州列表数据[通用]
-    enterpriseConditionCountyOneDate:'',//市州变化获取的一条区县[通用]
-    buttonControl:JSON.parse(sessionStorage.getItem('buttonList'))//按钮权限（从sesson获取）
+    enterpriseConditionData:{},//市州列表数据[通用]
+    enterpriseConditionCountyOneDate:{},//市州变化获取的一条区县[通用]
+    buttonControl:{}
   },
 
 
@@ -53,6 +53,10 @@ const store = new Vuex.Store({
 
     oneProjectInfoChange(state,val){
       state.oneProjectInfo = val
+    },
+
+    buttonControlChange(state,val){
+      state.buttonControl = val
     }
 
   },

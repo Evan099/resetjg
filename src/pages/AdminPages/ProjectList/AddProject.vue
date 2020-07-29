@@ -4,23 +4,23 @@
       <add-project_view-mod style="margin: 20px 0"></add-project_view-mod>
       <add-project_base-info v-show="projectWriteStatus === '0' "></add-project_base-info>
       <add-project_import-info v-show="projectWriteStatus === '2' && projectType.indexOf('2')> -1"></add-project_import-info>
-      <add-project_completed v-show="projectWriteStatus === '1' && projectType.indexOf('1')> -1 "></add-project_completed>
+      <add-project_completed-info v-show="projectWriteStatus === '1' && projectType.indexOf('1')> -1 "></add-project_completed-info>
     </div>
 </template>
 
 <script>
-    import {mapState} from 'vuex';
+    import {mapState,mapMutations} from 'vuex';
     import {homeMenu} from '../../../api'
     import AddProject_viewMod from "./AddProject_viewMod";
+    import AddProject_choseCondition from "./AddProject_choseCondition";
     import AddProject_baseInfo from "./AddProject_baseInfo";
     import AddProject_importInfo from "./AddProject_importInfo";
-    import AddProject_completed from "./AddProject_completed";
-    import AddProject_choseCondition from "./AddProject_choseCondition";
+    import AddProject_completedInfo from "./AddProject_completedInfo";
     export default {
       name: "AddProject",
       components: {
         AddProject_choseCondition,
-        AddProject_completed,
+        AddProject_completedInfo,
         AddProject_baseInfo, AddProject_importInfo , AddProject_viewMod},
       data(){
         return{
@@ -37,6 +37,10 @@
           }else{
             this.$store.commit('projectWriteStatusChange','0')//跳转到基本界面
           }
+        },
+        getButtonLimit(){
+          let buttonList = JSON.parse(sessionStorage.getItem('buttonList'))//获取buttonList
+          this.$store.commit('buttonControlChange',buttonList)//推到vuex
         }
       },
       watch:{
@@ -51,6 +55,8 @@
         //按钮权限总级控制
         const resultMenuList = await homeMenu({})
         sessionStorage.setItem("buttonList", JSON.stringify(resultMenuList.data.buttonList))  //存取按钮权限list
+
+        this.getButtonLimit()
       }
     }
 </script>

@@ -24,7 +24,7 @@
               @change="$store.commit('companyIdChange',baseParams.companyId),getCompanyAllProjectFn()"
             >
               <el-option
-                v-for="item in listCompany.data.company"
+                v-for="item in listCompany"
                 :key="item.id"
                 :label="item.companyName"
                 :value="item.id"
@@ -176,7 +176,6 @@
               ></el-option>
             </el-select>
           </td>
-
         </tr>
 
         <tr>
@@ -337,19 +336,19 @@
 
         async getCompanyList(){//初始化“企业名称”下拉公司列表
           const rs = await reqCreatProSerchCompany({})
-          this.listCompany = rs
+          this.listCompany = rs.data.company
         },
         async getTargetCompanyInfo(query){//通过模糊搜索查询获取目标公司信息
           if(query !== ""){
             const name = query;
             const rs = await reqCreatProSerchCompany({name});
-            this.listCompany = rs
+            this.listCompany = rs.data.company
             this.tipMsg = '总共' + rs.data.companyTotal.total + '个公司,显示' + rs.data.companyTotal.alreadyShown + '个公司,未显示' + rs.data.companyTotal.noShown + '个';
 
           }else{//搜索框没搜索到内容清空后重新请求公司数据
             const rs = await reqCreatProSerchCompany({});
             if (rs.status === '0') {
-              this.listCompany = rs;
+              this.listCompany = rs.data.company;
             } else {
               this.$message.error(rs.message)
             }
@@ -448,7 +447,8 @@
             this.$message.error('服务器错误');
           }
 
-        }
+        },
+
       },
       computed:{
         ...mapState(['insertProSkipData','userInfo','projectType','projectWriteStatus','companyId','oneProjectInfo','buttonControl']),
